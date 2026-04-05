@@ -12,7 +12,7 @@ public record PedidoDiarioResponse (
         BigDecimal creditLine, //LIMITE DE CREDITO
         LocalDateTime docDate, // ULTIMO PAGO RECIBIDO
         Long facturasVencidas, //NUMERO DE FACTURAS VENCIDAS
-        BigDecimal montoVencido, //MONTO TOTAL VENCIDO EN DOLARES
+        BigDecimal montoVencido, //MONTO TOTAL VENCIDO
         //Double cuentaTotalDolares,
         BigDecimal montoPorVencer, //MONTO POR VENCER
         LocalDateTime fechaVencida //FECHA DEL DOCUMENTO MAS VENCIDO

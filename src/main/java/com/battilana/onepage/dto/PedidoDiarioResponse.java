@@ -13,7 +13,7 @@ public record PedidoDiarioResponse (
         LocalDateTime docDate, // ULTIMO PAGO RECIBIDO
         Long facturasVencidas, //NUMERO DE FACTURAS VENCIDAS
         BigDecimal montoVencido, //MONTO TOTAL VENCIDO
-        //Double cuentaTotalDolares,
+        //Double cuentaTotal,
         BigDecimal montoPorVencer, //MONTO POR VENCER
         LocalDateTime fechaVencida //FECHA DEL DOCUMENTO MAS VENCIDO
         //String comentario

@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,16 +26,14 @@ public class LotePedidoServiceImpl implements LotePedidoService {
 
     @Override
     public void registrar() {
-
         List<PedidoDiarioResponse> pedidoDiarioResponses = this.borradoresService.buscarPedidosDiarios();
         List<LotePedidos> lotePedidos = new ArrayList<>();
-
         if (pedidoDiarioResponses != null) {
             for (PedidoDiarioResponse pd : pedidoDiarioResponses) {
                 LotePedidos lp = new LotePedidos();
                 lp.setCodCliente(pd.cardCode());
                 lp.setNombres(pd.cardName());
-                lp.setFechaRecorte(LocalDate.now());
+                lp.setFechaRecorte(LocalDateTime.now());
                 lp.setFechaCreacion(LocalDate.now());
                 lp.setEstado(true);
                 lp.setCondicionDePago(pd.pymntGroup());

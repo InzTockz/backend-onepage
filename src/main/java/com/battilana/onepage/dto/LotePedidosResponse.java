@@ -11,7 +11,7 @@ public record LotePedidosResponse(
         String condicionDePago,
         BigDecimal montoTotalPedido,
         BigDecimal limiteCredito,
-        LocalDate fechaRecorte,
+        LocalDateTime fechaRecorte,
         LocalDate fechaCreacion,
         Boolean estado,
         BigDecimal montoVencido,

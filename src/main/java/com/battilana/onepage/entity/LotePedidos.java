@@ -26,7 +26,7 @@ public class LotePedidos {
     private BigDecimal montoTotalPedido;
     private BigDecimal limiteCredito;
     @CreationTimestamp
-    private LocalDate fechaRecorte;
+    private LocalDateTime fechaRecorte;
     @CreationTimestamp
     private LocalDate fechaCreacion;
     private Boolean estado;

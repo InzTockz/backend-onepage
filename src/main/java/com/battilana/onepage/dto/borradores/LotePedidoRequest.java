@@ -1,19 +1,14 @@
-package com.battilana.onepage.dto;
+package com.battilana.onepage.dto.borradores;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public record LotePedidosResponse(
-        Integer idLotePedidos,
+public record LotePedidoRequest(
         String codCliente,
         String nombres,
         String condicionDePago,
         BigDecimal montoTotalPedido,
         BigDecimal limiteCredito,
-        LocalDateTime fechaRecorte,
-        LocalDate fechaCreacion,
-        Boolean estado,
         BigDecimal montoVencido,
         BigDecimal montoPorVencer,
         Long facturasVencidas,

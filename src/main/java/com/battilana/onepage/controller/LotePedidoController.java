@@ -1,6 +1,6 @@
 package com.battilana.onepage.controller;
 
-import com.battilana.onepage.dto.LotePedidosResponse;
+import com.battilana.onepage.dto.borradores.LotePedidosResponse;
 import com.battilana.onepage.service.LotePedidoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

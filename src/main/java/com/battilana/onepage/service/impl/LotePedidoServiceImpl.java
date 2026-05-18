@@ -1,9 +1,8 @@
 package com.battilana.onepage.service.impl;
 
-import com.battilana.onepage.dto.LotePedidoRequest;
-import com.battilana.onepage.dto.LotePedidosResponse;
-import com.battilana.onepage.dto.PedidoDiarioResponse;
-import com.battilana.onepage.entity.LotePedidos;
+import com.battilana.onepage.dto.borradores.LotePedidosResponse;
+import com.battilana.onepage.dto.borradores.PedidoDiarioResponse;
+import com.battilana.onepage.entity.LotePedidosEntity;
 import com.battilana.onepage.mappers.LotePedidoMapper;
 import com.battilana.onepage.repository.LotePedidosRepository;
 import com.battilana.onepage.service.BorradoresService;
@@ -27,10 +26,10 @@ public class LotePedidoServiceImpl implements LotePedidoService {
     @Override
     public void registrar() {
         List<PedidoDiarioResponse> pedidoDiarioResponses = this.borradoresService.buscarPedidosDiarios();
-        List<LotePedidos> lotePedidos = new ArrayList<>();
+        List<LotePedidosEntity> lotePedidoEntities = new ArrayList<>();
         if (pedidoDiarioResponses != null) {
             for (PedidoDiarioResponse pd : pedidoDiarioResponses) {
-                LotePedidos lp = new LotePedidos();
+                LotePedidosEntity lp = new LotePedidosEntity();
                 lp.setCodCliente(pd.cardCode());
                 lp.setNombres(pd.cardName());
                 lp.setFechaRecorte(LocalDateTime.now());
@@ -45,10 +44,10 @@ public class LotePedidoServiceImpl implements LotePedidoService {
                 lp.setFacturaVencida(pd.fechaVencida());
                 lp.setFacturaPagada(pd.docDate());
 
-                lotePedidos.add(lp);
+                lotePedidoEntities.add(lp);
             }
         }
-        this.lotePedidosRepository.saveAll(lotePedidos);
+        this.lotePedidosRepository.saveAll(lotePedidoEntities);
     }
 
     @Override

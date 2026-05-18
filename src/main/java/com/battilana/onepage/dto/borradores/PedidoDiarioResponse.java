@@ -1,4 +1,4 @@
-package com.battilana.onepage.dto;
+package com.battilana.onepage.dto.borradores;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

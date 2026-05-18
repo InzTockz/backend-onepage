@@ -1,6 +1,6 @@
 package com.battilana.onepage.controller;
 
-import com.battilana.onepage.dto.PedidoDiarioResponse;
+import com.battilana.onepage.dto.borradores.PedidoDiarioResponse;
 import com.battilana.onepage.service.BorradoresService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

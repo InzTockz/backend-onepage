@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class LotePedidos {
+public class LotePedidosEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

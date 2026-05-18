@@ -1,7 +1,7 @@
 package com.battilana.onepage.service;
 
-import com.battilana.onepage.dto.UsuarioRequest;
-import com.battilana.onepage.dto.UsuarioResponse;
+import com.battilana.onepage.dto.usuario.UsuarioRequest;
+import com.battilana.onepage.dto.usuario.UsuarioResponse;
 
 import java.util.List;
 

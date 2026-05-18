@@ -1,7 +1,7 @@
 package com.battilana.onepage.service.impl;
 
 import com.battilana.onepage.client.BorradoresClient;
-import com.battilana.onepage.dto.PedidoDiarioResponse;
+import com.battilana.onepage.dto.borradores.PedidoDiarioResponse;
 import com.battilana.onepage.service.BorradoresService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

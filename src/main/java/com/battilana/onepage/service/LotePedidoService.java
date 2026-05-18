@@ -1,7 +1,6 @@
 package com.battilana.onepage.service;
 
-import com.battilana.onepage.dto.LotePedidoRequest;
-import com.battilana.onepage.dto.LotePedidosResponse;
+import com.battilana.onepage.dto.borradores.LotePedidosResponse;
 
 import java.util.List;
 

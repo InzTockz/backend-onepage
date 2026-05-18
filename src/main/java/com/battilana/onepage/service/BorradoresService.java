@@ -1,6 +1,6 @@
 package com.battilana.onepage.service;
 
-import com.battilana.onepage.dto.PedidoDiarioResponse;
+import com.battilana.onepage.dto.borradores.PedidoDiarioResponse;
 
 import java.util.List;
 

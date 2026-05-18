@@ -1,11 +1,10 @@
 package com.battilana.onepage.mappers;
 
-import com.battilana.onepage.dto.LotePedidoRequest;
-import com.battilana.onepage.dto.LotePedidosResponse;
-import com.battilana.onepage.entity.LotePedidos;
+import com.battilana.onepage.dto.borradores.LotePedidoRequest;
+import com.battilana.onepage.dto.borradores.LotePedidosResponse;
+import com.battilana.onepage.entity.LotePedidosEntity;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 
 import java.util.List;
@@ -13,8 +12,8 @@ import java.util.List;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface LotePedidoMapper {
 
-    List<LotePedidosResponse> toListResponse(List<LotePedidos> lotePedidos);
-    LotePedidosResponse toRegisterResponse(LotePedidos lotePedidos);
+    List<LotePedidosResponse> toListResponse(List<LotePedidosEntity> lotePedidoEntities);
+    LotePedidosResponse toRegisterResponse(LotePedidosEntity lotePedidosEntity);
     @InheritInverseConfiguration
-    LotePedidos toLoteEntity(LotePedidoRequest lotePedidoRequest);
+    LotePedidosEntity toLoteEntity(LotePedidoRequest lotePedidoRequest);
 }

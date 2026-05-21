@@ -1,5 +1,6 @@
 package com.battilana.onepage.entity;
 
+import com.battilana.onepage.dto.facturas.FacturasPorCobrarClientResponse;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,6 +10,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "tbl_lote_pedidos")
@@ -21,18 +23,20 @@ public class LotePedidosEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idLotePedidos;
     private String codCliente;
-    private String nombres;
-    private String condicionDePago;
-    private BigDecimal montoTotalPedido;
-    private BigDecimal limiteCredito;
-    @CreationTimestamp
-    private LocalDateTime fechaRecorte;
+    private String nombre;
     @CreationTimestamp
     private LocalDate fechaCreacion;
-    private Boolean estado;
+    @CreationTimestamp
+    private LocalDateTime fechaRecorte;
+    private BigDecimal montoTotal;
+    private BigDecimal lineaCredito;
+    private String condicionPago;
+    private BigDecimal montoPorCobrar;
     private BigDecimal montoVencido;
-    private BigDecimal montoPorVencer;
-    private Long facturasVencidas;
-    private LocalDateTime facturaVencida;
-    private LocalDateTime facturaPagada;
+    private BigDecimal lineaCreditoUtilizada;
+    private BigDecimal mora;
+    private Long nroFacturasVencidas;
+    private LocalDateTime fechaFacturaVencidaMasAntigua;
+    private Boolean estado;
+    private List<FacturasPorCobrarClientResponse> facturas;
 }

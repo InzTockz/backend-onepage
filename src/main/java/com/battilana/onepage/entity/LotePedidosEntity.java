@@ -38,5 +38,6 @@ public class LotePedidosEntity {
     private Long nroFacturasVencidas;
     private LocalDateTime fechaFacturaVencidaMasAntigua;
     private Boolean estado;
-    private List<FacturasPorCobrarClientResponse> facturas;
+    @Column(columnDefinition = "TEXT")
+    private String facturasVencidas;
 }

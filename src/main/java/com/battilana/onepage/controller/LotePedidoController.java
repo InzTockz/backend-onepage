@@ -18,13 +18,19 @@ public class LotePedidoController {
     private final LotePedidoService lotePedidoService;
 
     @GetMapping("/listar")
-    ResponseEntity<List<LotePedidosResponse>> listar(){
+    public ResponseEntity<List<LotePedidosResponse>> listar(){
         return ResponseEntity.status(HttpStatus.OK).body(this.lotePedidoService.listar());
     }
 
     @PostMapping("/registrar")
-    ResponseEntity<Void> registrar(){
+    public ResponseEntity<Void> registrar(){
         this.lotePedidoService.registrar();
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PutMapping("/generar-envio")
+    public ResponseEntity<Void> generarEnvios(){
+        this.lotePedidoService.generarEnvios();
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

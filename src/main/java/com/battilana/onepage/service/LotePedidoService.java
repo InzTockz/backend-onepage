@@ -8,4 +8,5 @@ public interface LotePedidoService {
 
     void registrar();
     List<LotePedidosResponse> listar();
+    void generarEnvios();
 }

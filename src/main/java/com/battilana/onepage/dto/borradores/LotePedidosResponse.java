@@ -1,23 +1,28 @@
 package com.battilana.onepage.dto.borradores;
 
+import jakarta.persistence.Column;
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record LotePedidosResponse(
-        Integer idLotePedidos,
+        Integer idLotePedido,
         String codCliente,
-        String nombres,
-        String condicionDePago,
-        BigDecimal montoTotalPedido,
-        BigDecimal limiteCredito,
-        LocalDateTime fechaRecorte,
+        String nombre,
         LocalDate fechaCreacion,
-        Boolean estado,
+        LocalDateTime fechaRecorte,
+        BigDecimal montoTotal,
+        BigDecimal lineaCredito,
+        String condicionPago,
+        BigDecimal montoPorCobrar,
         BigDecimal montoVencido,
-        BigDecimal montoPorVencer,
-        Long facturasVencidas,
-        LocalDateTime facturaVencida,
-        LocalDateTime facturaPagada
+        BigDecimal lineaCreditoUtilizada,
+        BigDecimal mora,
+        Long nroFacturasVencidas,
+        LocalDateTime fechaFacturaVencidaMasAntigua,
+        Boolean estado,
+        String facturasVencidas
 ) {
 }

@@ -22,6 +22,7 @@ public record LotePedidosResponse(
         BigDecimal mora,
         Long nroFacturasVencidas,
         LocalDateTime fechaFacturaVencidaMasAntigua,
+        LocalDateTime fechaUltimaFacturaPagada,
         Boolean estado,
         String facturasVencidas
 ) {

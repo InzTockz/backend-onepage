@@ -48,16 +48,12 @@ public class LotePedidoServiceImpl implements LotePedidoService {
                 lp.setFechaRecorte(LocalDateTime.now());
                 lp.setMontoTotal(pd.docTotalFC());
                 lp.setCondicionPago(pd.pymntGroup());
-                if(pd.creditLine().compareTo(BigDecimal.ZERO) > 0  && pd.pymntGroup().equalsIgnoreCase("Contado")){
+                if(pd.creditLine().compareTo(BigDecimal.ZERO) > 0  && !pd.pymntGroup().equalsIgnoreCase("Contado")){
                     lp.setLineaCredito(pd.creditLine());
                     lp.setMontoPorCobrar(pd.montoPorVencer());
                     lp.setMontoVencido(pd.montoVencido());
-                    BigDecimal saldoContable = listadoFacturas.stream().filter(
-                                    f -> f.ruc().equalsIgnoreCase(pd.cardCode())
-                            ).map(FacturasPorCobrarClientResponse::saldo)
-                            .reduce(BigDecimal.ZERO, BigDecimal::add);
                     lp.setLineaCreditoUtilizada(
-                            (saldoContable.divide(pd.creditLine(), 2, RoundingMode.HALF_UP)).multiply(BigDecimal.valueOf(100))
+                            pd.montoPorVencer().add(pd.montoVencido()).divide(pd.creditLine(), 2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100))
                     );
                     lp.setMora(BigDecimal.valueOf(100));
                     lp.setNroFacturasVencidas(pd.facturasVencidas());
@@ -72,7 +68,7 @@ public class LotePedidoServiceImpl implements LotePedidoService {
                     lp.setFechaFacturaVencidaMasAntigua(LocalDateTime.of(LocalDate.of(1900, 1,1), LocalTime.of(0, 0)));
                 }
                 lp.setEstado(true);
-
+                lp.setFechaUltimaFacturaPagada(pd.docDate());
                 LocalDate hoy = LocalDate.now();
                 String facturas = listadoFacturas.stream()
                         .filter(f -> {

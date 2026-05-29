@@ -37,6 +37,7 @@ public class LotePedidosEntity {
     private BigDecimal mora;
     private Long nroFacturasVencidas;
     private LocalDateTime fechaFacturaVencidaMasAntigua;
+    private LocalDateTime fechaUltimaFacturaPagada;
     private Boolean estado;
     @Column(columnDefinition = "TEXT")
     private String facturasVencidas;

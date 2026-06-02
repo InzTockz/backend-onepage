@@ -1,9 +1,11 @@
 package com.battilana.onepage.dto.facturas;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public record FacturasPorCobrarRequest(
-        //String ruc, --AUTOMATICO
+        //Long idFacturaPorCobrar, // automatico
+        String ruc,
         String nombre,
         Integer documento,
         String comprobante,
@@ -13,8 +15,8 @@ public record FacturasPorCobrarRequest(
         BigDecimal importe,
         BigDecimal saldo,
         String vendedor,
-        //LocalDate fechaRegistro, --AUTOMATICO
-        //Integer periodo, --AUTOMATICO
+//        LocalDate fechaRegistro,
+        Integer periodo,
         BigDecimal lc
 ) {
 }

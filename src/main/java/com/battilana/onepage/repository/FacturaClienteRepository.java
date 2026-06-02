@@ -32,7 +32,7 @@ public interface FacturaClienteRepository extends JpaRepository<FacturaClienteEn
             "SUM(CASE WHEN dias > 180 THEN saldo ELSE 0 END) as vencido_180_mas " +
             "FROM (" +
             "SELECT periodo, saldo, " +
-            "DATEDIFF(fecha_registro, STR_TO_DATE(vencimiento, '%d/%m/%Y')) as dias " +
+            "DATEDIFF(fecha_registro, vencimiento) as dias " +
             "FROM tbl_factura_cliente " +
             "WHERE saldo>0) t " +
             "GROUP BY periodo " +
@@ -41,8 +41,8 @@ public interface FacturaClienteRepository extends JpaRepository<FacturaClienteEn
     List<ResumenCarteraResponse> resumenCartera();
 
     @Query(value = "SELECT periodo, " +
-            "SUM(CASE WHEN dias < 0 THEN saldo ELSE 0 END) as no_vencidos, " +
-            "SUM(CASE WHEN dias BETWEEN 0 AND 30 THEN saldo ELSE 0 END) as vencido_0_30, " +
+            "SUM(CASE WHEN dias <= 0 THEN saldo ELSE 0 END) as no_vencidos, " +
+            "SUM(CASE WHEN dias BETWEEN 1 AND 30 THEN saldo ELSE 0 END) as vencido_0_30, " +
             "SUM(CASE WHEN dias BETWEEN 31 AND 45 THEN saldo ELSE 0 END) as vencido_31_45, " +
             "SUM(CASE WHEN dias BETWEEN 46 AND 60 THEN saldo ELSE 0 END) as vencido_46_60, " +
             "SUM(CASE WHEN dias BETWEEN 61 AND 90 THEN saldo ELSE 0 END) as vencido_61_90, " +
@@ -50,7 +50,7 @@ public interface FacturaClienteRepository extends JpaRepository<FacturaClienteEn
             "SUM(CASE WHEN dias > 180 THEN saldo ELSE 0 END) as vencido_180_mas " +
             "FROM (" +
             "SELECT periodo, saldo, " +
-            "DATEDIFF(fecha_registro, STR_TO_DATE(vencimiento, '%d/%m/%Y')) as dias " +
+            "DATEDIFF(fecha_registro, vencimiento) as dias " +
             "FROM tbl_factura_cliente " +
             "WHERE saldo>0 AND periodo BETWEEN 1 AND :periodo) t " +
             "GROUP BY periodo " +
@@ -59,8 +59,8 @@ public interface FacturaClienteRepository extends JpaRepository<FacturaClienteEn
     List<ResumenCarteraResponse> resumenCarteraPorPeriodo(@Param("periodo") Integer periodo);
 
     @Query(value = "SELECT periodo, " +
-            "SUM(CASE WHEN dias < 0 THEN saldo ELSE 0 END) as no_vencidos, " +
-            "SUM(CASE WHEN dias BETWEEN 0 AND 30 THEN saldo ELSE 0 END) as vencido_0_30, " +
+            "SUM(CASE WHEN dias <= 0 THEN saldo ELSE 0 END) as no_vencidos, " +
+            "SUM(CASE WHEN dias BETWEEN 1 AND 30 THEN saldo ELSE 0 END) as vencido_0_30, " +
             "SUM(CASE WHEN dias BETWEEN 31 AND 45 THEN saldo ELSE 0 END) as vencido_31_45, " +
             "SUM(CASE WHEN dias BETWEEN 46 AND 60 THEN saldo ELSE 0 END) as vencido_46_60, " +
             "SUM(CASE WHEN dias BETWEEN 61 AND 90 THEN saldo ELSE 0 END) as vencido_61_90, " +
@@ -68,7 +68,7 @@ public interface FacturaClienteRepository extends JpaRepository<FacturaClienteEn
             "SUM(CASE WHEN dias > 180 THEN saldo ELSE 0 END) as vencido_180_mas " +
             "FROM (" +
             "SELECT periodo, saldo, " +
-            "DATEDIFF(fecha_registro, STR_TO_DATE(vencimiento, '%d/%m/%Y')) as dias " +
+            "DATEDIFF(fecha_registro, vencimiento) as dias " +
             "FROM tbl_factura_cliente " +
             "WHERE saldo>0 " +
             "AND periodo BETWEEN 1 AND :periodo " +
@@ -79,8 +79,8 @@ public interface FacturaClienteRepository extends JpaRepository<FacturaClienteEn
     List<ResumenCarteraResponse> resumenCarteraPorPeriodoYVendedor(@Param("periodo") Integer periodo, @Param("vendedor") String vendedor);
 
     @Query(value = "SELECT periodo, " +
-            "SUM(CASE WHEN dias < 0 THEN saldo ELSE 0 END) as no_vencidos, " +
-            "SUM(CASE WHEN dias BETWEEN 0 AND 30 THEN saldo ELSE 0 END) as vencido_0_30, " +
+            "SUM(CASE WHEN dias <= 0 THEN saldo ELSE 0 END) as no_vencidos, " +
+            "SUM(CASE WHEN dias BETWEEN 1 AND 30 THEN saldo ELSE 0 END) as vencido_0_30, " +
             "SUM(CASE WHEN dias BETWEEN 31 AND 45 THEN saldo ELSE 0 END) as vencido_31_45, " +
             "SUM(CASE WHEN dias BETWEEN 46 AND 60 THEN saldo ELSE 0 END) as vencido_46_60, " +
             "SUM(CASE WHEN dias BETWEEN 61 AND 90 THEN saldo ELSE 0 END) as vencido_61_90, " +
@@ -88,11 +88,16 @@ public interface FacturaClienteRepository extends JpaRepository<FacturaClienteEn
             "SUM(CASE WHEN dias > 180 THEN saldo ELSE 0 END) as vencido_180_mas " +
             "FROM (" +
             "SELECT periodo, saldo, " +
-            "DATEDIFF(fecha_registro, STR_TO_DATE(vencimiento, '%d/%m/%Y')) as dias " +
+            "DATEDIFF(fecha_registro, vencimiento) as dias " +
             "FROM tbl_factura_cliente " +
             "WHERE saldo>0 AND vendedor=:vendedor) t " +
             "GROUP BY periodo " +
             "ORDER BY periodo"
             , nativeQuery = true)
     List<ResumenCarteraResponse> resumenCarteraPorVendedor(@Param("vendedor") String vendedor);
+
+    @Query("SELECT MAX(F.periodo) " +
+            "FROM FacturaClienteEntity F " +
+            "WHERE YEAR(F.fechaRegistro)=:anio")
+    Integer obtenerUltimoPeriodo(@Param("anio") Integer anio);
 }
